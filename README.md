@@ -57,9 +57,28 @@ U `gallery: [ ... ]`:
 
 Dodajte `photo: "img/team/ime.jpg"` u redak osobe. Bez fotografije prikazuju se inicijali.
 
-## Logo HRZZ-a
+## Logotipi HRZZ-a i Stomatološkog fakulteta
 
-Preuzmite službeni logo s hrzz.hr i spremite ga kao `img/hrzz-logo.png`. Pojavit će se u podnožju uz tekst o financiranju.
+Spremite službene datoteke ovako:
+
+```
+img/logos/hrzz-hr.png     HRZZ u boji, hrvatska verzija (prikazuje se na HR jeziku stranice)
+img/logos/hrzz-en.png     HRZZ u boji, engleska verzija
+img/logos/hrzz-white.png  HRZZ negativ za tamnu naslovnicu
+img/logos/sfzg.png        SFZG u boji
+img/logos/sfzg-white.png  SFZG bijeli za tamnu naslovnicu
+```
+
+Ove su datoteke već pripremljene iz službenih logotipa. Ako ih ikad zamijenite, zadržite iste nazive.
+
+Najbolji su PNG s prozirnom pozadinom ili SVG (tada u `content.js` promijenite nastavak u `.svg`).
+Logotipi se pojavljuju na dva mjesta:
+
+- **na naslovnici**, uz „Ustanova nositelj” i „Financiranje”, u bijeloj verziji jer je pozadina tamna. Stranica sama pobijeli logotip u boji. Ako imate službenu bijelu (negativ) verziju, spremite je npr. kao `img/logos/hrzz-white.png` i upišite je pod `funderWhite` / `hostWhite`.
+- **u podnožju**, u boji na bijeloj podlozi, uz tekst o financiranju.
+
+Dok datoteke ne postoje, umjesto logotipa piše naziv ustanove, pa se ništa ne „razbije”.
+Logotipi suradnih ustanova (FSB, PBF…) neobavezno se dodaju poljem `logo` u popisu `institutions`.
 
 ## Pravila koja sprječavaju greške
 

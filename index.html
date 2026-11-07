@@ -106,7 +106,7 @@ p{margin:0 0 1em}
 .facts dt{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:2px}
 .facts dd{margin:0;font-size:15px;color:#fff}
 .hint{position:absolute;z-index:1;right:var(--gut);top:92px;font-size:13px;color:rgba(255,255,255,.5);margin:0;max-width:24ch;text-align:right;pointer-events:none}
-@media (max-width:900px){.facts{grid-template-columns:1fr 1fr;gap:14px 24px}.hint{display:none}}
+@media (max-width:900px){.facts{grid-template-columns:1fr 1fr;gap:14px 24px}.hint{display:none}.facts .hl{height:32px}}
 @media (prefers-reduced-motion:reduce){.print.cured h1{animation:none}}
 
 /* ---------- sections ---------- */
@@ -281,9 +281,20 @@ p{margin:0 0 1em}
 .foot-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:48px 72px}
 .foot p{color:rgba(255,255,255,.8)}
 .foot a{color:var(--glow)}
-.fund{display:flex;gap:22px;align-items:center;border:1px solid rgba(191,174,255,.25);border-radius:14px;padding:22px 24px}
-.fund img{height:58px;width:auto;background:#fff;border-radius:6px;padding:6px 10px}
-.fund p{margin:0;font-size:15.5px}
+.credits{background:#fff;color:var(--ink);border-radius:18px;padding:28px 30px;display:grid;grid-template-columns:1fr 1fr;gap:26px 32px;align-items:end}
+.credits figure{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.credits figcaption{font-size:13.5px;color:var(--slate)}
+.credits .lg{height:68px;display:flex;align-items:center}
+.credits .lg img{max-height:68px;max-width:100%;width:auto;object-fit:contain}
+.credits .lg span{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.2;font-variation-settings:"wdth" 85}
+.credits p{grid-column:1/-1;margin:0;padding-top:18px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+@media (max-width:520px){.credits{grid-template-columns:1fr}}
+.facts .hl{display:block;height:42px;width:auto;max-width:min(240px,100%);object-fit:contain;object-position:left center;margin-top:4px}
+#heroHost .hl{height:32px;margin-top:9px}
+@media (max-width:900px){#heroHost .hl{height:25px;margin-top:7px}}
+.facts .hl.mono{filter:brightness(0) invert(1);opacity:.92}
+.inst li .il{height:30px;width:auto;max-width:110px;object-fit:contain;filter:grayscale(1);opacity:.75;flex:none;transition:filter .2s,opacity .2s}
+.inst li:hover .il{filter:none;opacity:1}
 .copy{margin-top:72px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:13.5px;color:rgba(255,255,255,.5);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 @media (max-width:860px){.foot-grid{grid-template-columns:1fr}}
 </style>
@@ -327,8 +338,8 @@ p{margin:0 0 1em}
     <dl class="facts">
       <div><dt data-i="f.dur">Duration</dt><dd data-f="dates"></dd></div>
       <div><dt data-i="f.lead">Project leader</dt><dd data-f="leader"></dd></div>
-      <div><dt data-i="f.host">Host institution</dt><dd data-f="host"></dd></div>
-      <div><dt data-i="f.fund">Funding</dt><dd data-f="funder"></dd></div>
+      <div><dt data-i="f.host">Host institution</dt><dd id="heroHost"></dd></div>
+      <div><dt data-i="f.fund">Funding</dt><dd id="heroFund"></dd></div>
     </dl>
   </div>
   <p class="hint" data-i="hero.hint">Move the cursor to cure the resin network.</p>
@@ -445,8 +456,9 @@ p{margin:0 0 1em}
         <p id="mail"></p>
       </div>
       <div>
-        <div class="fund">
-          <img id="funderLogo" alt="Hrvatska zaklada za znanost" hidden>
+        <div class="credits">
+          <figure><figcaption data-i="c.fundBy">Funded by</figcaption><div class="lg" id="credFund"></div></figure>
+          <figure><figcaption data-i="f.host">Host institution</figcaption><div class="lg" id="credHost"></div></figure>
           <p data-i="c.fund"></p>
         </div>
       </div>
@@ -508,7 +520,7 @@ en:{
  "gal.h":"Gallery","gal.lede":"The lab, the printers and the people behind the project.",
  "gal.emptyH":"Photos will appear here",
  "gal.emptyP":"Pictures from project meetings, laboratory work and conferences will be added as the project progresses.",
- "c.h":"Contact","c.dept":"Department of Orthodontics",
+ "c.h":"Contact","c.dept":"Department of Orthodontics","c.fundBy":"Funded by",
  "c.fund":"This project is funded by the Croatian Science Foundation under the project "+(P.code||"")+".",
  "c.upd":"",
  "lb.close":"Close","lb.prev":"Previous","lb.next":"Next",
@@ -553,7 +565,7 @@ hr:{
  "gal.h":"Galerija","gal.lede":"Laboratorij, printeri i ljudi koji stoje iza projekta.",
  "gal.emptyH":"Ovdje će se pojaviti fotografije",
  "gal.emptyP":"Fotografije sa sastanaka, iz laboratorija i s konferencija dodavat će se kako projekt bude napredovao.",
- "c.h":"Kontakt","c.dept":"Zavod za ortodonciju",
+ "c.h":"Kontakt","c.dept":"Zavod za ortodonciju","c.fundBy":"Projekt financira",
  "c.fund":"Ovaj projekt financira Hrvatska zaklada za znanost projektom "+(P.code||"")+".",
  "c.upd":"",
  "lb.close":"Zatvori","lb.prev":"Prethodna","lb.next":"Sljedeća",
@@ -608,12 +620,18 @@ const initials = n => n.split(/\s+/).filter(Boolean).map(w=>w[0]).filter((_,i,a)
 const surnames = (S.team||[]).map(p => p.name.split(/\s+/).pop());
 
 /* ---------------- render ---------------- */
+// a logo image that falls back to the institution's name if the file is missing
+function logoTag(src, name, cls){
+  const txt = `<span>${esc(name)}</span>`;
+  if (!src) return txt;
+  return `<img class="${cls}" src="${esc(src)}" alt="${esc(name)}" onerror="this.outerHTML=this.dataset.fb" data-fb="${esc(txt)}">`;
+}
 function renderStatic(){
   document.documentElement.lang = lang;
   $$("[data-i]").forEach(el => { const v = t(el.dataset.i); if (typeof v === "string" && v) el.textContent = v; });
   $$("[data-i-html]").forEach(el => { el.innerHTML = t(el.dataset.iHtml); });
   const fields = {
-    title: L(P.title), leader: L(P.leader), host: L(P.host), funder: L(P.funder),
+    title: L(P.title), leader: L(P.leader), host: L(P.host),
     dates: (o => fmt(P.start,o)+" – "+fmt(P.end,o))(lang==="hr"?{day:"numeric",month:"numeric",year:"numeric"}:{day:"numeric",month:"short",year:"numeric"}),
     address: L((S.contact||{}).address)
   };
@@ -621,6 +639,14 @@ function renderStatic(){
   $$(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
   const mail = (S.contact||{}).email;
   $("#mail").innerHTML = mail ? `<a href="mailto:${esc(mail)}">${esc(mail)}</a>` : "";
+  const LG = S.logos || {};
+  const fundName = L(P.funder), hostName = L(P.host);
+  // hero: white versions on the dark background (official negative file if given, otherwise the colour file turned white)
+  $("#heroFund").innerHTML = logoTag(L(LG.funderWhite) || L(LG.funder) || S.funderLogo, fundName, "hl" + (LG.funderWhite ? "" : " mono"));
+  $("#heroHost").innerHTML = logoTag(L(LG.hostWhite) || L(LG.host), hostName, "hl" + (LG.hostWhite ? "" : " mono"));
+  // footer: full-colour logos on white
+  $("#credFund").innerHTML = logoTag(L(LG.funder) || S.funderLogo, fundName, "");
+  $("#credHost").innerHTML = logoTag(L(LG.host), hostName, "");
   $("#copyLine").textContent = `© ${new Date().getFullYear()} ${P.acronym||"ORTHOPRINT"}, ${L(P.host)}`;
 }
 
@@ -678,7 +704,8 @@ function renderTeam(){
     </li>`).join("");
   $("#instList").innerHTML = (S.institutions||[]).map(i => {
     const n = esc(L(i.name)); const nm = i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${n}</a>` : n;
-    return `<li><span>${nm}${i.lead?`<em>${esc(t("inst.lead"))}</em>`:""}</span></li>`;
+    const lg = i.logo ? `<img class="il" src="${esc(i.logo)}" alt="" loading="lazy" onerror="this.remove()">` : "";
+    return `<li>${lg}<span>${nm}${i.lead?`<em>${esc(t("inst.lead"))}</em>`:""}</span></li>`;
   }).join("");
 }
 
@@ -774,8 +801,6 @@ const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.inn
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(renderPlan, 150); });
 
-const logo = $("#funderLogo");
-if (S.funderLogo) { logo.onload = () => logo.hidden = false; logo.onerror = () => logo.remove(); logo.src = S.funderLogo; } else logo.remove();
 
 renderAll(); fitTitle();
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);

@@ -116,7 +116,7 @@ window.SITE = {
               hr: "Sustavi za printanje i validacija industrijskog tijeka rada na više platformi." } }
   ],
 
-  /* logo: neobavezno, npr. "img/logos/fsb.png" */
+  /* logo: neobavezno, npr. "img/logos/fsb.png" – prikazuje se uz naziv ustanove */
   institutions: [
     { id: "SFZG", lead: true, url: "https://www.sfzg.unizg.hr",
       name: { en: "University of Zagreb, School of Dental Medicine", hr: "Sveučilište u Zagrebu Stomatološki fakultet" } },
@@ -149,6 +149,18 @@ window.SITE = {
     email: ""   // npr. "orthoprint@sfzg.unizg.hr" – ostavite prazno ako ne želite prikazati
   },
 
-  /* Logo HRZZ-a: preuzmite s hrzz.hr i spremite kao img/hrzz-logo.png */
-  funderLogo: "img/hrzz-logo.png"
+  /* ---------------------------------------------------------------
+     LOGOTIPI / LOGOS
+     funder, host       – službeni logotipi u boji (PNG s prozirnom pozadinom ili SVG);
+                          mogu imati englesku i hrvatsku verziju: { en: "...", hr: "..." }
+     funderWhite, hostWhite – neobavezno: službene bijele (negativ) verzije za tamnu naslovnicu.
+                          Ako ih ne navedete, stranica sama pobijeli logotip u boji.
+     Ako datoteka ne postoji, umjesto logotipa prikazuje se naziv ustanove.
+     --------------------------------------------------------------- */
+  logos: {
+    funder: { en: "img/logos/hrzz-en.png", hr: "img/logos/hrzz-hr.png" },
+    host: "img/logos/sfzg.png",
+    funderWhite: "img/logos/hrzz-white.png",
+    hostWhite: "img/logos/sfzg-white.png"
+  }
 };
