@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="img/logo-mark.png">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="apple-touch-icon" href="img/logo-mark-512.png">
 <style>
 :root{
@@ -48,11 +48,12 @@ p{margin:0 0 1em}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .25s, box-shadow .25s}
-.nav .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:76px}
 .brand{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.02em;color:#fff;text-decoration:none;font-variation-settings:"wdth" 80;display:flex;align-items:center;gap:12px}
-.brand .mark{width:46px;height:46px;border-radius:13px;background:#fff;display:grid;place-items:center;overflow:hidden;flex:none;box-shadow:0 2px 10px rgba(14,12,46,.25)}
-.brand .mark img{width:44px;height:44px}
-.nav.solid .brand .mark{box-shadow:0 0 0 1px var(--line)}
+.brand .mark{height:62px;width:auto;flex:none;margin:-4px 0;filter:drop-shadow(0 4px 14px rgba(106,75,255,.35))}
+.nav.solid .brand .mark{filter:none}
+@media (max-width:900px){.brand .mark{height:52px}.nav .wrap{gap:14px}.nav .lang{margin-left:auto}.nav .menu-btn{margin-left:0}}
+@media (max-width:440px){.brand .word{display:none}}
 .nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0}
 .nav ul a{color:rgba(255,255,255,.82);text-decoration:none;font-size:15px}
 .nav ul a:hover{color:#fff}
@@ -70,7 +71,7 @@ p{margin:0 0 1em}
 .nav.solid .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
 @media (max-width:900px){
   .menu-btn{display:block;margin-left:auto}
-  .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--gut) 18px;box-shadow:0 12px 30px rgba(21,18,63,.12)}
+  .nav ul{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--gut) 18px;box-shadow:0 12px 30px rgba(21,18,63,.12)}
   .nav.open ul{display:flex}
   .nav ul a{color:var(--ink)!important;display:block;padding:12px 0;font-size:17px;border-bottom:1px solid var(--line)}
   .nav.open{background:var(--paper)}
@@ -308,8 +309,8 @@ p{margin:0 0 1em}
 <nav class="nav" id="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="ORTHOPRINT">
-      <span class="mark"><img src="img/logo-mark.png" alt="" width="44" height="44"></span>
-      ORTHOPRINT
+      <img class="mark" src="img/logo.png" alt="" width="73" height="62">
+      <span class="word">ORTHOPRINT</span>
     </a>
     <ul id="menu">
       <li><a href="#project" data-i="nav.project">Project</a></li>
@@ -477,7 +478,7 @@ p{margin:0 0 1em}
   <button class="nx" type="button" data-i="lb.next">Next</button>
 </div>
 
-<script src="content.js?v=20261108a"></script>
+<script src="content.js?v=20261108b"></script>
 <script>
 document.documentElement.classList.remove("no-js");
 (function(){
@@ -800,7 +801,7 @@ $$("#menu a, .brand, .skip").forEach(a => a.addEventListener("click", e => {
   el.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   try { history.replaceState(null, "", "#"+id); } catch(_){}
 }));
-const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight*0.72 - 68);
+const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight*0.72 - 76);
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
 let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(renderPlan, 150); });
 
