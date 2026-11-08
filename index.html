@@ -95,7 +95,7 @@ p{margin:0 0 1em}
   will-change:transform,clip-path}
 .no-js .print h1{color:#fff}
 .print.cured .vat{overflow:visible}
-.print.cured h1{--ll:.12;transition:--ll 1.6s ease;animation:postcure 1.6s ease}
+.print.cured h1{--ll:.08;transition:--ll 1.6s ease;animation:postcure 1.6s ease}
 @keyframes postcure{0%{filter:drop-shadow(0 0 0 rgba(150,120,255,0))}35%{filter:drop-shadow(0 0 26px rgba(150,120,255,.95)) brightness(1.15)}100%{filter:drop-shadow(0 0 0 rgba(150,120,255,0))}}
 .slice{position:absolute;left:0;right:0;top:100%;height:var(--lh);overflow:hidden;opacity:0;pointer-events:none}
 .slice span{position:absolute;left:0;top:0;font-family:var(--display);font-size:inherit;white-space:nowrap;font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;letter-spacing:-.025em;line-height:.9;padding-top:.03em;color:#D8CCFF;text-shadow:0 0 10px #8F72FF,0 0 22px #6A4BFF}
@@ -109,8 +109,13 @@ p{margin:0 0 1em}
 .facts{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:12px 48px;margin:0;border-top:1px solid rgba(191,174,255,.25);padding-top:18px}
 .facts dt{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:2px}
 .facts dd{margin:0;font-size:15px;color:#fff}
-.hint{position:absolute;z-index:1;right:var(--gut);top:92px;font-size:13px;color:rgba(255,255,255,.5);margin:0;max-width:24ch;text-align:right;pointer-events:none}
-@media (max-width:900px){.facts{grid-template-columns:1fr 1fr;gap:14px 24px}.hint{display:none}.facts .hl{height:32px}}
+.cure{position:absolute;z-index:1;right:var(--gut);top:100px;width:230px;pointer-events:none;text-align:right}
+.cure p{margin:0 0 10px;font-size:13px;line-height:1.4;color:rgba(255,255,255,.62)}
+.cure .dc{white-space:nowrap;display:flex;justify-content:flex-end;align-items:baseline;gap:10px;font-size:12.5px;color:rgba(255,255,255,.55)}
+.cure .dc b{font-family:var(--display);font-variation-settings:"wdth" 80;font-size:24px;font-weight:700;color:#fff;min-width:3.2ch;font-variant-numeric:tabular-nums}
+.cure .dcbar{display:block;height:3px;margin-top:6px;border-radius:2px;background:rgba(191,174,255,.18);overflow:hidden}
+.cure .dcbar em{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--glow));transition:width .25s}
+@media (max-width:900px){.facts{grid-template-columns:1fr 1fr;gap:14px 24px}.cure{top:88px;width:210px}.cure p{font-size:12px}.cure .dc b{font-size:20px}.facts .hl{height:32px}}
 @media (prefers-reduced-motion:reduce){.print.cured h1{animation:none}}
 
 /* ---------- sections ---------- */
@@ -346,7 +351,7 @@ p{margin:0 0 1em}
       <div><dt data-i="f.fund">Funding</dt><dd id="heroFund"></dd></div>
     </dl>
   </div>
-  <p class="hint" data-i="hero.hint">Move the cursor to cure the resin network.</p>
+  <div class="cure" aria-hidden="true"><p id="cureHint"></p><div class="dc"><span id="dcLabel"></span><b id="dcVal">0 %</b></div><i class="dcbar"><em id="dcBar"></em></i></div>
 </header>
 
 <main>
@@ -478,7 +483,7 @@ p{margin:0 0 1em}
   <button class="nx" type="button" data-i="lb.next">Next</button>
 </div>
 
-<script src="content.js?v=20261108b"></script>
+<script src="content.js?v=20261108c"></script>
 <script>
 document.documentElement.classList.remove("no-js");
 (function(){
@@ -492,7 +497,7 @@ en:{
  skip:"Skip to content", menu:"Menu",
  "nav.project":"Project","nav.objectives":"Objectives","nav.plan":"Work plan","nav.team":"Team","nav.pubs":"Publications","nav.news":"News","nav.gallery":"Gallery","nav.contact":"Contact",
  "hero.code":"Croatian Science Foundation project "+(P.code||""),
- "hero.hint":"Move the cursor to cure the resin network.", "hero.reprint":"Print again", "hud.layer":(k,n)=>`Layer ${k} / ${n}`, "hud.burn":"Burn-in layers", "hud.post":"UV post-curing", "hud.done":"Printed",
+ "hero.hint":"Move the cursor to cure the resin network.", "hero.reprint":"Print again", "cure.hint":"Move the cursor to cure the resin network. Click for a flash exposure.", "cure.touch":"Tap the resin for a flash exposure.", "cure.full":"Fully cured. Print again for fresh resin.", "cure.dc":"Degree of conversion", "hud.layer":(k,n)=>`Layer ${k} / ${n}`, "hud.burn":"Burn-in layers", "hud.post":"UV post-curing", "hud.done":"Printed",
  "f.dur":"Duration","f.lead":"Project leader","f.host":"Host institution","f.fund":"Funding",
  "about.h":"Resins designed for appliances worn every day",
  "about.lede":"Most printable resins used for aligners, retainers and splints were adapted from general dental or industrial materials. ORTHOPRINT builds the knowledge needed to design them for orthodontics from the start.",
@@ -537,7 +542,7 @@ hr:{
  skip:"Preskoči na sadržaj", menu:"Izbornik",
  "nav.project":"Projekt","nav.objectives":"Ciljevi","nav.plan":"Plan rada","nav.team":"Tim","nav.pubs":"Radovi","nav.news":"Novosti","nav.gallery":"Galerija","nav.contact":"Kontakt",
  "hero.code":"Projekt Hrvatske zaklade za znanost "+(P.code||""),
- "hero.hint":"Pomičite pokazivač kako biste umrežili smolu.", "hero.reprint":"Printaj ponovno", "hud.layer":(k,n)=>`Sloj ${k} / ${n}`, "hud.burn":"Početni slojevi", "hud.post":"Naknadno UV stvrdnjavanje", "hud.done":"Isprintano",
+ "hero.hint":"Pomičite pokazivač kako biste umrežili smolu.", "hero.reprint":"Printaj ponovno", "cure.hint":"Pomičite pokazivač kako biste umrežili smolu. Kliknite za bljesak.", "cure.touch":"Dodirnite smolu za bljesak svjetla.", "cure.full":"Potpuno umreženo. „Printaj ponovno” za svježu smolu.", "cure.dc":"Stupanj konverzije", "hud.layer":(k,n)=>`Sloj ${k} / ${n}`, "hud.burn":"Početni slojevi", "hud.post":"Naknadno UV stvrdnjavanje", "hud.done":"Isprintano",
  "f.dur":"Trajanje","f.lead":"Voditeljica projekta","f.host":"Ustanova nositelj","f.fund":"Financiranje",
  "about.h":"Smole za naprave koje se nose svaki dan",
  "about.lede":"Većina smola za printanje alignera, retainera i udlaga prilagođena je iz općih dentalnih ili industrijskih materijala. ORTHOPRINT stvara znanje potrebno da se one od početka dizajniraju za ortodonciju.",
@@ -881,63 +886,145 @@ async function printTitle(){
 reBtn.addEventListener("click", () => { resetNetwork(); printTitle(); });
 $$(".lang button").forEach(b => b.addEventListener("click", hud));
 
-/* ---------------- hero, part 2: the surrounding resin network cures once the title is done ---------------- */
+/* ---------------- hero, part 2: a liquid resin that the visitor cures with light ----------------
+   Monomers drift freely until light reaches them. Exposed monomers form crosslinks with their
+   neighbours (up to their functionality: 2, 3 or 4 bonds), the network contracts slightly as it
+   cures (polymerisation shrinkage), and the degree of conversion is counted live. */
 const cv = $("#net"), ctx = cv.getContext("2d");
-let W=0, H=0, dpr=1, nodes=[], edges=[], layer=0, layerH=16, lastLayer=0, phase="wait", visible=true;
+const hero = $(".hero"), dcVal = $("#dcVal"), dcBar = $("#dcBar"), cureHint = $("#cureHint"), dcLabel = $("#dcLabel");
+const touchOnly = matchMedia("(hover: none)").matches;
+let W=0, H=0, dpr=1, nodes=[], edges=[], sparks=[], flashes=[], R=60, cell=60, grid=new Map(), visible=true;
+let sweep = {on:false, y:0}, titleDone=false, lastPointer=-1e9, ghostA=0, sumF=1, lastHud=0, lastTs=0;
 const mouse = {x:-1e4, y:-1e4, on:false};
 
 function build(){
   const r = cv.getBoundingClientRect(); W = r.width; H = r.height; dpr = Math.min(2, devicePixelRatio||1);
   cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-  const n = Math.min(340, Math.round(W*H/5200));
-  nodes = [];
+  const n = Math.min(360, Math.round(W*H/4600));
+  const spacing = Math.sqrt(W*H/n); R = spacing*1.75; cell = R;
+  nodes = []; edges = []; sparks = []; flashes = [];
   const cols = Math.ceil(Math.sqrt(n*W/H)), rows = Math.ceil(n/cols), cw = W/cols, ch = H/rows;
   for (let i=0;i<cols;i++) for (let j=0;j<rows;j++){
-    const x = (i+.15+Math.random()*.7)*cw, y = (j+.15+Math.random()*.7)*ch;
-    nodes.push({x, y, bx:x, by:y, ph:Math.random()*6.28, sp:.4+Math.random()*.8, cured:0, k: Math.random()<.18 ? 3 : 2});
+    const x = (i+.1+Math.random()*.8)*cw, y = (j+.1+Math.random()*.8)*ch, q = Math.random();
+    nodes.push({x, y, bx:x, by:y, ph:Math.random()*6.28, sp:.5+Math.random()*.9, f: q<.6?2:q<.88?3:4, b:0, act:0, nb:new Set()});
   }
-  edges = []; const seen = new Set(); const R2 = (Math.max(cw,ch)*1.9)**2;
-  nodes.forEach((a,ai) => {
-    const near = [];
-    nodes.forEach((b,bi) => { if (ai===bi) return; const d=(a.x-b.x)**2+(a.y-b.y)**2; if (d<R2) near.push([d,bi]); });
-    near.sort((p,q)=>p[0]-q[0]).slice(0, a.k+1).forEach(([,bi]) => { const key = ai<bi?ai+"-"+bi:bi+"-"+ai; if(!seen.has(key)){seen.add(key); edges.push([ai,bi]);} });
-  });
-  layerH = Math.max(12, H/42); layer = 0;
+  sumF = nodes.reduce((s,n)=>s+n.f, 0);
 }
-function startNetwork(){ if (reduce) { nodes.forEach(n=>n.cured=1); phase="done"; draw(performance.now()); return; } layer = 0; lastLayer = performance.now(); phase = "print"; }
-function resetNetwork(){ nodes.forEach(n=>n.cured=0); phase = "wait"; }
+function startNetwork(){ titleDone = true; }
+function resetNetwork(){ titleDone = false; sweep.on = false; build(); updateHud(true); }
+
+function rebuildGrid(){
+  grid.clear();
+  nodes.forEach((n,i) => { const k = ((n.bx/cell)|0) + "," + ((n.by/cell)|0); let a = grid.get(k); if (!a) grid.set(k, a = []); a.push(i); });
+}
+function tryBond(i, now){
+  const A = nodes[i]; if (A.b >= A.f) return;
+  const cx = (A.bx/cell)|0, cy = (A.by/cell)|0; let best = -1, bd = R*R;
+  for (let gx=cx-1; gx<=cx+1; gx++) for (let gy=cy-1; gy<=cy+1; gy++){
+    const a = grid.get(gx+","+gy); if (!a) continue;
+    for (const j of a){ if (j===i || A.nb.has(j)) continue; const B = nodes[j]; if (B.b >= B.f) continue;
+      const d = (A.bx-B.bx)**2 + (A.by-B.by)**2; if (d < bd) { bd = d; best = j; } }
+  }
+  if (best < 0) return;
+  const B = nodes[best];
+  edges.push({a:i, b:best, t0:now, rest:Math.sqrt(bd)*0.84});
+  A.b++; B.b++; A.nb.add(best); B.nb.add(i); A.act = 1; B.act = Math.max(B.act, .7);
+  sparks.push({x:(A.x+B.x)/2, y:(A.y+B.y)/2, t0:now}); if (sparks.length > 90) sparks.shift();
+}
+function conversion(){ let s = 0; for (const n of nodes) s += n.b; return s / sumF; }
+function updateHud(force){
+  const dc = conversion(), pct = Math.round(dc*100);
+  if (dcVal) dcVal.textContent = pct + " %";
+  if (dcBar) dcBar.style.width = Math.min(100, pct) + "%";
+  if (dcLabel) dcLabel.textContent = T[lang]["cure.dc"];
+  if (cureHint) cureHint.textContent = dc > .9 ? T[lang]["cure.full"] : T[lang][touchOnly ? "cure.touch" : "cure.hint"];
+}
+$$(".lang button").forEach(b => b.addEventListener("click", () => updateHud(true)));
+
+function lights(now, tsec){
+  const L = [];
+  if (mouse.on) L.push({x:mouse.x, y:mouse.y, r:135, I:1});
+  // a guiding light wanders over the resin until the visitor takes over
+  const idle = now - lastPointer > 4000;
+  const want = titleDone && !reduce && idle && conversion() < .55 ? (touchOnly ? .75 : .6) : 0;
+  ghostA += (want - ghostA) * .03;
+  if (ghostA > .02) L.push({x: W*(.66 + .26*Math.sin(tsec*.31)), y: H*(.34 + .24*Math.sin(tsec*.47 + 1.3)), r:110, I:ghostA, ghost:true});
+  for (const f of flashes){ const q = (now - f.t0)/520; if (q < 1) L.push({x:f.x, y:f.y, r:40 + 220*q, I:2.4*(1-q), flash:true}); }
+  return L;
+}
 
 function draw(ts){
-  const tsec = ts/1000;
-  if (phase==="print" && ts - lastLayer > 55) { layer++; lastLayer = ts; if (H - layer*layerH < -layerH) phase = "done"; }
-  const front = H - layer*layerH;
+  const now = performance.now(), tsec = ts/1000, dt = Math.min(50, ts - (lastTs || ts)); lastTs = ts;
+  flashes = flashes.filter(f => now - f.t0 < 520);
+  rebuildGrid();
+  const L = lights(now, tsec);
+  if (sweep.on){ sweep.y -= Math.max(6, H/90); if (sweep.y < -40) sweep.on = false; }
+
+  // exposure and crosslinking
+  for (let i=0;i<nodes.length;i++){
+    const n = nodes[i]; let e = 0;
+    for (const l of L){ const d = Math.hypot(n.bx - l.x, n.by - l.y); if (d < l.r) e += l.I * (1 - d/l.r); }
+    if (sweep.on && Math.abs(n.by - sweep.y) < 26) e += .55;
+    n.act = Math.max(0, n.act*.93 + Math.min(1, e)*.06);
+    if (e > 0 && n.b < n.f && Math.random() < e*dt/140) tryBond(i, now);
+    if (!reduce){
+      if (n.b === 0){ n.bx += (Math.random()-.5)*.5; n.by += (Math.random()-.5)*.5;
+        if (n.bx < -10) n.bx = -10; if (n.bx > W+10) n.bx = W+10; if (n.by < -10) n.by = -10; if (n.by > H+10) n.by = H+10; }
+      const amp = n.b ? .9 : 5.5;          // free monomers wander, bonded ones only vibrate
+      n.x = n.bx + Math.sin(tsec*n.sp + n.ph)*amp;
+      n.y = n.by + Math.cos(tsec*n.sp*.8 + n.ph)*amp;
+    } else { n.x = n.bx; n.y = n.by; }
+  }
+  // polymerisation shrinkage: bonds pull their monomers slightly closer
+  if (!reduce) for (const ed of edges){
+    const A = nodes[ed.a], B = nodes[ed.b], dx = B.bx - A.bx, dy = B.by - A.by, d = Math.hypot(dx, dy);
+    if (d > ed.rest){ const m = (d - ed.rest) * .02 / d; A.bx += dx*m; A.by += dy*m; B.bx -= dx*m; B.by -= dy*m; }
+  }
+
   ctx.clearRect(0,0,W,H);
-
-  for (const nd of nodes){
-    if (phase!=="wait" && nd.cured < 1 && nd.by > front) nd.cured = Math.min(1, nd.cured + .06);
-    if (mouse.on){ const d = Math.hypot(nd.bx-mouse.x, nd.by-mouse.y); if (d < 130) nd.cured = Math.min(1, nd.cured + .08*(1-d/130)+.02); }
-    const amp = reduce ? 0 : (6*(1-nd.cured) + 1.1);   // liquid monomers wander; the cured network only breathes
-    nd.x = nd.bx + Math.sin(tsec*nd.sp + nd.ph)*amp;
-    nd.y = nd.by + Math.cos(tsec*nd.sp*.8 + nd.ph)*amp;
+  // settled crosslinks in one path
+  ctx.lineWidth = 1.25; ctx.strokeStyle = "rgba(186,168,255,.5)"; ctx.beginPath();
+  const fresh = [];
+  for (const ed of edges){ if (now - ed.t0 < 1100) { fresh.push(ed); continue; } const A = nodes[ed.a], B = nodes[ed.b]; ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); }
+  ctx.stroke();
+  // new crosslinks grow from one monomer to the other and glow while they form
+  for (const ed of fresh){
+    const A = nodes[ed.a], B = nodes[ed.b], age = now - ed.t0, p = Math.min(1, age/170), g = 1 - age/1100;
+    ctx.strokeStyle = `rgba(${Math.round(186+50*g)},${Math.round(168+70*g)},255,${(.5+.45*g).toFixed(3)})`;
+    ctx.lineWidth = 1.25 + 1.6*g;
+    ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(A.x+(B.x-A.x)*p, A.y+(B.y-A.y)*p); ctx.stroke();
   }
-  ctx.lineWidth = 1;
-  for (const [a,b] of edges){
-    const A = nodes[a], B = nodes[b], c = Math.min(A.cured, B.cured);
-    if (c < .05) continue;
-    ctx.strokeStyle = `rgba(170,150,255,${(.06+.24*c).toFixed(3)})`;
-    ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+  // monomers
+  for (const n of nodes){
+    const c = n.b / n.f, r = 1.3 + .45*(n.f-2) + 1.1*c;
+    if (n.act > .06){
+      const h = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r*6);
+      h.addColorStop(0, `rgba(170,140,255,${(.5*n.act).toFixed(3)})`); h.addColorStop(1, "rgba(106,75,255,0)");
+      ctx.fillStyle = h; ctx.beginPath(); ctx.arc(n.x, n.y, r*6, 0, 6.283); ctx.fill();
+    }
+    ctx.fillStyle = n.b ? `rgba(${Math.round(190+35*c)},${Math.round(178+38*c)},255,${(.6+.38*c).toFixed(3)})` : "rgba(140,128,220,.34)";
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.283); ctx.fill();
   }
-  for (const nd of nodes){
-    const c = nd.cured;
-    ctx.fillStyle = c > .5 ? `rgba(214,204,255,${(.45+.5*c).toFixed(3)})` : `rgba(140,128,220,${(.22+.3*c).toFixed(3)})`;
-    ctx.beginPath(); ctx.arc(nd.x, nd.y, 1.2 + 1.2*c, 0, 6.283); ctx.fill();
+  // a small burst where each bond closes
+  for (const sp of sparks){
+    const q = (now - sp.t0)/420; if (q >= 1) continue;
+    ctx.strokeStyle = `rgba(225,215,255,${(.75*(1-q)).toFixed(3)})`; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(sp.x, sp.y, 2 + 13*q, 0, 6.283); ctx.stroke();
   }
-  if (phase==="print" && front > -layerH){
-    const g = ctx.createLinearGradient(0, front-layerH*2.2, 0, front+layerH*.6);
-    g.addColorStop(0, "rgba(106,75,255,0)"); g.addColorStop(.78, "rgba(124,96,255,.26)"); g.addColorStop(.92, "rgba(200,186,255,.7)"); g.addColorStop(1, "rgba(106,75,255,0)");
-    ctx.fillStyle = g; ctx.fillRect(0, front-layerH*2.2, W, layerH*2.8);
+  // the light itself
+  for (const l of L){
+    const a = l.ghost ? l.I*.8 : Math.min(1, l.I);
+    const rg = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, l.r);
+    rg.addColorStop(0, `rgba(160,130,255,${((l.flash?.32:.24)*a).toFixed(3)})`); rg.addColorStop(.7, `rgba(120,90,255,${(.07*a).toFixed(3)})`); rg.addColorStop(1, "rgba(106,75,255,0)");
+    ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(l.x, l.y, l.r, 0, 6.283); ctx.fill();
+    ctx.strokeStyle = `rgba(200,186,255,${((l.flash?.5:.22)*a).toFixed(3)})`; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(l.x, l.y, l.r*(l.flash?1:.98), 0, 6.283); ctx.stroke();
   }
-
+  if (sweep.on){
+    const g = ctx.createLinearGradient(0, sweep.y-40, 0, sweep.y+14);
+    g.addColorStop(0, "rgba(106,75,255,0)"); g.addColorStop(.8, "rgba(130,100,255,.22)"); g.addColorStop(.95, "rgba(200,186,255,.55)"); g.addColorStop(1, "rgba(106,75,255,0)");
+    ctx.fillStyle = g; ctx.fillRect(0, sweep.y-40, W, 54);
+  }
   // the resin vat under the title
   if (PR.surf > 0.01){
     const cr = cv.getBoundingClientRect(), vr = vat.getBoundingClientRect();
@@ -966,19 +1053,23 @@ function draw(ts){
     ctx.shadowColor = "rgba(140,110,255,.9)"; ctx.shadowBlur = 14 + 22*PR.glow; ctx.stroke();
     ctx.restore();
   }
-  if (mouse.on){
-    const rg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 130);
-    rg.addColorStop(0, "rgba(150,120,255,.22)"); rg.addColorStop(1, "rgba(106,75,255,0)");
-    ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 130, 0, 6.283); ctx.fill();
-  }
+  if (now - lastHud > 120){ lastHud = now; updateHud(); }
 }
-function frame(ts){ if (visible) draw(ts); if (!reduce) requestAnimationFrame(frame); }
-const hero = $(".hero");
-hero.addEventListener("pointermove", e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true; if (reduce) draw(performance.now()); });
-hero.addEventListener("pointerleave", () => { mouse.on = false; if (reduce) draw(performance.now()); });
+function frame(ts){ if (visible) draw(ts); requestAnimationFrame(frame); }
+const toLocal = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+hero.addEventListener("pointermove", e => { if (e.pointerType === "touch") return; [mouse.x, mouse.y] = toLocal(e); mouse.on = true; lastPointer = performance.now(); });
+hero.addEventListener("pointerleave", () => { mouse.on = false; });
+hero.addEventListener("pointerdown", e => {
+  if (e.target.closest("a,button")) return;
+  const [x, y] = toLocal(e); flashes.push({x, y, t0: performance.now()}); lastPointer = performance.now();
+});
 if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(hero);
-let bt; addEventListener("resize", () => { clearTimeout(bt); bt = setTimeout(() => { const cured = phase!=="wait"; build(); if (cured) { nodes.forEach(n=>n.cured=1); phase="done"; } if (reduce) draw(performance.now()); }, 200); });
-build(); requestAnimationFrame(frame);
+let bt, lastW = 0; addEventListener("resize", () => { clearTimeout(bt); bt = setTimeout(() => {
+  const r = cv.getBoundingClientRect();
+  if (Math.abs(r.width - lastW) > 2) { lastW = r.width; build(); }      // new width: fresh resin
+  else { H = r.height; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }  // only the height changed (mobile address bar)
+}, 200); });
+build(); lastW = W; updateHud(true); requestAnimationFrame(frame);
 // wait for the display font so the title does not change shape mid-print
 Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), sleep(1500)]).then(() => { fitTitle(); printTitle(); });
 })();
