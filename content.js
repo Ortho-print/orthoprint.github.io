@@ -88,8 +88,8 @@ window.SITE = {
      --------------------------------------------------------------- */
   team: [
     { name: "Senka Meštrović", title: { en: "Professor", hr: "prof. dr. sc." }, lead: true, org: "SFZG", orcid: "0000-0003-3224-3579",
-      role: { en: "Project leader. Scientific strategy, decision gates, dissemination and project management.",
-              hr: "Voditeljica projekta. Znanstvena strategija, točke odluke, diseminacija i upravljanje projektom." } },
+      role: { en: "Project leader. Scientific strategy, dissemination and project management.",
+              hr: "Voditeljica projekta. Znanstvena strategija, diseminacija i upravljanje projektom." } },
     { name: "Tatjana Haramina", title: { en: "Professor", hr: "prof. dr. sc." }, org: "FSB", orcid: "0000-0001-5327-4329",
       role: { en: "Polymer engineering, rheology and mechanical characterisation. Formulation design and design of experiments.",
               hr: "Polimerno inženjerstvo, reologija i mehanička karakterizacija. Dizajn formulacija i plan pokusa." } },
