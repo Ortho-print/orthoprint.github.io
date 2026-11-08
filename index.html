@@ -192,14 +192,7 @@ p{margin:0 0 1em}
   .tl .g{font-size:12px}
   .tl .today span{top:-20px}
 }
-.methods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 32px;margin-top:88px;list-style:none;padding:0}
-.methods h3{font-size:18px;margin:0 0 10px;padding-top:14px;border-top:2px solid var(--ink)}
-.methods ul{list-style:none;margin:0;padding:0}
-.methods li li{padding:8px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.4}
-.methods li li span{display:block;font-size:13.5px;color:var(--slate)}
-@media (max-width:960px){.methods{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.methods{grid-template-columns:1fr}}
-
+@media (max-width:960px){@media (max-width:560px){
 /* team */
 .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;list-style:none;margin:0;padding:0}
 .person{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:26px 0;border-top:1px solid var(--line)}
@@ -320,7 +313,6 @@ p{margin:0 0 1em}
     <ul id="menu">
       <li><a href="#project" data-i="nav.project">Project</a></li>
       <li><a href="#objectives" data-i="nav.objectives">Objectives</a></li>
-      <li><a href="#plan" data-i="nav.plan">Work plan</a></li>
       <li><a href="#team" data-i="nav.team">Team</a></li>
       <li><a href="#publications" data-i="nav.pubs">Publications</a></li>
       <li><a href="#news" data-i="nav.news">News</a></li>
@@ -397,19 +389,8 @@ p{margin:0 0 1em}
   </div>
 </section>
 
-<section class="section paper" id="plan">
-  <div class="wrap">
-    <div class="head">
-      <h2 data-i="plan.h">Three years, four work packages</h2>
-      <p class="lede" data-i="plan.lede">Work packages overlap so that each one receives the formulations that passed the previous gate as soon as they are selected.</p>
-    </div>
-    <p class="now" id="now"></p>
-    <div class="tl" id="tl"></div>
-    <ul class="methods" id="methods"></ul>
-  </div>
-</section>
 
-<section class="section" id="team">
+<section class="section paper" id="team">
   <div class="wrap">
     <div class="head">
       <h2 data-i="team.h">Team</h2>
@@ -423,7 +404,7 @@ p{margin:0 0 1em}
   </div>
 </section>
 
-<section class="section paper" id="publications">
+<section class="section" id="publications">
   <div class="wrap">
     <div class="head">
       <h2 data-i="pub.h">Publications</h2>
@@ -434,7 +415,7 @@ p{margin:0 0 1em}
   </div>
 </section>
 
-<section class="section" id="news">
+<section class="section paper" id="news">
   <div class="wrap">
     <div class="head">
       <h2 data-i="news.h">News and events</h2>
@@ -444,7 +425,7 @@ p{margin:0 0 1em}
   </div>
 </section>
 
-<section class="section paper" id="gallery">
+<section class="section" id="gallery">
   <div class="wrap">
     <div class="head">
       <h2 data-i="gal.h">Gallery</h2>
@@ -483,7 +464,7 @@ p{margin:0 0 1em}
   <button class="nx" type="button" data-i="lb.next">Next</button>
 </div>
 
-<script src="content.js?v=20261108c"></script>
+<script src="content.js?v=20261108d"></script>
 <script>
 document.documentElement.classList.remove("no-js");
 (function(){
@@ -495,7 +476,7 @@ const P = S.project || {};
 const T = {
 en:{
  skip:"Skip to content", menu:"Menu",
- "nav.project":"Project","nav.objectives":"Objectives","nav.plan":"Work plan","nav.team":"Team","nav.pubs":"Publications","nav.news":"News","nav.gallery":"Gallery","nav.contact":"Contact",
+ "nav.project":"Project","nav.objectives":"Objectives","nav.team":"Team","nav.pubs":"Publications","nav.news":"News","nav.gallery":"Gallery","nav.contact":"Contact",
  "hero.code":"Croatian Science Foundation project "+(P.code||""),
  "hero.hint":"Move the cursor to cure the resin network.", "hero.reprint":"Print again", "cure.hint":"Move the cursor to cure the resin network. Click for a flash exposure.", "cure.touch":"Tap the resin for a flash exposure.", "cure.full":"Fully cured. Print again for fresh resin.", "cure.dc":"Degree of conversion", "hud.layer":(k,n)=>`Layer ${k} / ${n}`, "hud.burn":"Burn-in layers", "hud.post":"UV post-curing", "hud.done":"Printed",
  "f.dur":"Duration","f.lead":"Project leader","f.host":"Host institution","f.fund":"Funding",
@@ -513,8 +494,6 @@ en:{
  "g2.h":"Gate 2","g2.w":"Year 2","g2.p":"At least 80% retention of key mechanical properties after aging.",
  "g3.h":"Gate 3","g3.w":"Year 3","g3.p":"Chemical safety and at least 70% cell viability (ISO 10993-5).",
  "g4.h":"Design rules","g4.w":"Year 3","g4.p":"Processing envelopes validated on at least two printing platforms.",
- "plan.h":"Three years, four work packages",
- "plan.lede":"Work packages overlap so that each one receives the formulations that passed the previous gate as soon as they are selected.",
  "team.h":"Team",
  "team.lede":"Dental medicine, polymer engineering, analytical chemistry and cell biology, with every member responsible for a defined part of the methodological chain.",
  "inst.h":"Collaborating institutions","inst.lead":"Host institution",
@@ -540,7 +519,7 @@ en:{
 },
 hr:{
  skip:"Preskoči na sadržaj", menu:"Izbornik",
- "nav.project":"Projekt","nav.objectives":"Ciljevi","nav.plan":"Plan rada","nav.team":"Tim","nav.pubs":"Radovi","nav.news":"Novosti","nav.gallery":"Galerija","nav.contact":"Kontakt",
+ "nav.project":"Projekt","nav.objectives":"Ciljevi","nav.team":"Tim","nav.pubs":"Radovi","nav.news":"Novosti","nav.gallery":"Galerija","nav.contact":"Kontakt",
  "hero.code":"Projekt Hrvatske zaklade za znanost "+(P.code||""),
  "hero.hint":"Pomičite pokazivač kako biste umrežili smolu.", "hero.reprint":"Printaj ponovno", "cure.hint":"Pomičite pokazivač kako biste umrežili smolu. Kliknite za bljesak.", "cure.touch":"Dodirnite smolu za bljesak svjetla.", "cure.full":"Potpuno umreženo. „Printaj ponovno” za svježu smolu.", "cure.dc":"Stupanj konverzije", "hud.layer":(k,n)=>`Sloj ${k} / ${n}`, "hud.burn":"Početni slojevi", "hud.post":"Naknadno UV stvrdnjavanje", "hud.done":"Isprintano",
  "f.dur":"Trajanje","f.lead":"Voditeljica projekta","f.host":"Ustanova nositelj","f.fund":"Financiranje",
@@ -558,8 +537,6 @@ hr:{
  "g2.h":"Točka odluke 2","g2.w":"2. godina","g2.p":"Najmanje 80 % zadržanih ključnih mehaničkih svojstava nakon starenja.",
  "g3.h":"Točka odluke 3","g3.w":"3. godina","g3.p":"Kemijska sigurnost i najmanje 70 % vijabilnosti stanica (ISO 10993-5).",
  "g4.h":"Pravila dizajna","g4.w":"3. godina","g4.p":"Rasponi parametara obrade potvrđeni na najmanje dvije platforme za printanje.",
- "plan.h":"Tri godine, četiri radna paketa",
- "plan.lede":"Radni paketi se preklapaju kako bi svaki dobio formulacije koje su prošle prethodnu točku odluke čim su odabrane.",
  "team.h":"Tim",
  "team.lede":"Dentalna medicina, polimerno inženjerstvo, analitička kemija i stanična biologija, a svaki je član odgovoran za određeni dio metodološkog lanca.",
  "inst.h":"Suradne ustanove","inst.lead":"Ustanova nositelj",
@@ -585,35 +562,11 @@ hr:{
 }};
 
 const OBJ = [
- {k:"O1", wp:1, en:"Quantify how formulation variables determine rheological printability, working-curve parameters and conversion behaviour.", hr:"Kvantificirati kako varijable formulacije određuju reološku printabilnost, parametre radne krivulje i ponašanje konverzije."},
- {k:"O2", wp:2, en:"Establish relationships between network architecture and thermomechanical performance, including retention after simulated intraoral aging.", hr:"Utvrditi odnose između arhitekture mreže i termomehaničkih svojstava, uključujući njihovo zadržavanje nakon simuliranog intraoralnog starenja."},
- {k:"O3", wp:3, en:"Quantify how residual monomers and leachables depend on formulation and processing, and relate them to biological response.", hr:"Kvantificirati kako rezidualni monomeri i otpuštene tvari ovise o formulaciji i obradi te ih povezati s biološkim odgovorom."},
- {k:"O4", wp:4, en:"Validate transferability across at least two vat-photopolymerisation platforms and define processing envelopes.", hr:"Potvrditi prenosivost na najmanje dvije platforme za fotopolimerizaciju u kadi i definirati raspone parametara obrade."}
+ {k:"O1", en:"Quantify how formulation variables determine rheological printability, working-curve parameters and conversion behaviour.", hr:"Kvantificirati kako varijable formulacije određuju reološku printabilnost, parametre radne krivulje i ponašanje konverzije."},
+ {k:"O2", en:"Establish relationships between network architecture and thermomechanical performance, including retention after simulated intraoral aging.", hr:"Utvrditi odnose između arhitekture mreže i termomehaničkih svojstava, uključujući njihovo zadržavanje nakon simuliranog intraoralnog starenja."},
+ {k:"O3", en:"Quantify how residual monomers and leachables depend on formulation and processing, and relate them to biological response.", hr:"Kvantificirati kako rezidualni monomeri i otpuštene tvari ovise o formulaciji i obradi te ih povezati s biološkim odgovorom."},
+ {k:"O4", en:"Validate transferability across at least two vat-photopolymerisation platforms and define processing envelopes.", hr:"Potvrditi prenosivost na najmanje dvije platforme za fotopolimerizaciju u kadi i definirati raspone parametara obrade."}
 ];
-const WP = [
- {n:1, from:1, to:12, en:"Formulation design and printability–conversion mapping", hr:"Dizajn formulacija i mapiranje printabilnosti i konverzije"},
- {n:2, from:1, to:24, en:"Thermomechanical performance and aging stability", hr:"Termomehanička svojstva i stabilnost pri starenju"},
- {n:3, from:13, to:36, en:"Chemical stability and biological response", hr:"Kemijska stabilnost i biološki odgovor"},
- {n:4, from:25, to:36, en:"Transferability, validation and design rules", hr:"Prenosivost, validacija i pravila dizajna"}
-];
-const METHODS = [
- {wp:1, en:"Printability and conversion", hr:"Printabilnost i konverzija", items:[
-   {en:"Rotational rheometry", hr:"Rotacijska reometrija", at:"FSB"},
-   {en:"Working curves (Dp, Ec) on SLA, DLP and LCD printers", hr:"Radne krivulje (Dp, Ec) na SLA, DLP i LCD printerima", at:"MED3D"},
-   {en:"Degree of conversion by FTIR-ATR", hr:"Stupanj konverzije metodom FTIR-ATR", at:"CFIIV"}]},
- {wp:2, en:"Mechanics and aging", hr:"Mehanika i starenje", items:[
-   {en:"Dynamic mechanical analysis (E′, tan δ)", hr:"Dinamička mehanička analiza (E′, tan δ)", at:"FSB"},
-   {en:"Tensile and flexural testing on a new universal testing machine", hr:"Vlačna i savojna ispitivanja na novoj univerzalnoj kidalici", at:"SFZG"},
-   {en:"Water storage at 37 °C and thermocycling", hr:"Pohrana u vodi pri 37 °C i termocikliranje", at:"SFZG"},
-   {en:"SEM of surfaces and fractures", hr:"SEM površina i lomova", at:"CFIIV"}]},
- {wp:3, en:"Chemistry and biology", hr:"Kemija i biologija", items:[
-   {en:"LC-MS of residual monomers and leachables", hr:"LC-MS rezidualnih monomera i otpuštenih tvari", at:"CFIIV"},
-   {en:"Cytotoxicity, MTT assay (ISO 10993-5)", hr:"Citotoksičnost, MTT test (ISO 10993-5)", at:"PBF"}]},
- {wp:4, en:"Transfer and validation", hr:"Prijenos i validacija", items:[
-   {en:"Cross-platform validation on at least two printing systems", hr:"Validacija na najmanje dva sustava za printanje", at:"MED3D"},
-   {en:"Open, curated datasets in a FAIR repository", hr:"Otvoreni, kurirani skupovi podataka u FAIR repozitoriju", at:"SFZG"}]}
-];
-
 /* ---------------- helpers ---------------- */
 let lang = "en";
 try { lang = localStorage.getItem("op-lang") || ((navigator.language||"").toLowerCase().startsWith("hr") ? "hr" : "en"); } catch(e){ lang = (navigator.language||"").toLowerCase().startsWith("hr") ? "hr" : "en"; }
@@ -660,43 +613,7 @@ function renderStatic(){
 }
 
 function renderObjectives(){
-  $("#objList").innerHTML = OBJ.map(o => `<li><b>${o.k}</b><div><p>${esc(o[lang])}</p><small>${lang==="hr"?"Radni paket":"Work package"} ${o.wp}</small></div></li>`).join("");
-}
-
-function renderPlan(){
-  const total = 36, start = parse(P.start), now = new Date();
-  let m = (now.getFullYear()-start.getFullYear())*12 + (now.getMonth()-start.getMonth()) + 1;
-  const endTxt = fmt(P.end);
-  let nowHtml;
-  if (now < start) { nowHtml = `<strong>${esc(T[lang].before(fmt(P.start)))}</strong>`; m = 0; }
-  else if (m > total) { nowHtml = `<strong>${esc(T[lang].after)}</strong>`; m = total; }
-  else nowHtml = `<strong>${esc(T[lang].now(m,total))}</strong><span>${esc(T[lang].nowSub(endTxt))}</span>`;
-  $("#now").innerHTML = nowHtml;
-
-  const pct = x => (x/total*100).toFixed(3)+"%";
-  const elapsedPct = m > 0 ? ((m-0.5)/total*100) : 0;   // middle of the current month
-  let h = `<div class="years">${[1,2,3].map(y=>`<span>${esc(T[lang].year(y))}</span>`).join("")}</div>`;
-  WP.forEach(w => {
-    const left = (w.from-1)/total*100, width = (w.to-w.from+1)/total*100;
-    const doneInBar = Math.max(0, Math.min(100, (elapsedPct-left)/width*100));
-    h += `<div class="row"><div class="lbl"><b>WP${w.n}</b>${esc(w[lang])}</div><div class="track"><div class="bar done" style="left:${left}%;width:${width}%;--p:${doneInBar.toFixed(1)}%" title="WP${w.n}: ${lang==="hr"?"mjeseci":"months"} ${w.from}–${w.to}"></div></div></div>`;
-  });
-  h += `<div class="gates">${[12,24,36].map((mm,i)=>`<div class="g" style="left:${pct(mm)}"><i></i>${esc(T[lang].gate(i+1))}</div>`).join("")}</div>`;
-  const tl = $("#tl");
-  tl.innerHTML = h;
-  if (m > 0 && m <= total) {
-    // place "today" marker over the tracks column
-    const tracks = $$(".track", tl), first = tracks[0], last = tracks[tracks.length-1];
-    requestAnimationFrame(() => {
-      const tb = tl.getBoundingClientRect(), fb = first.getBoundingClientRect(), lb = last.getBoundingClientRect();
-      let mk = $(".today", tl); if (!mk) { mk = document.createElement("div"); mk.className = "today"; tl.appendChild(mk); }
-      mk.style.left = (fb.left - tb.left + fb.width*elapsedPct/100) + "px";
-      mk.style.top = (fb.top - tb.top - 4) + "px";
-      mk.style.bottom = (tb.bottom - lb.bottom) + "px";
-      mk.innerHTML = `<span>${esc(T[lang].todayTag)}</span>`;
-    });
-  }
-  $("#methods").innerHTML = METHODS.map(g => `<li><h3>WP${g.wp} ${esc(g[lang])}</h3><ul>${g.items.map(it=>`<li>${esc(it[lang])}<span>${esc(instName(it.at))}</span></li>`).join("")}</ul></li>`).join("");
+  $("#objList").innerHTML = OBJ.map(o => `<li><b>${o.k}</b><div><p>${esc(o[lang])}</p></div></li>`).join("");
 }
 
 const ORCID_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#A6CE39"/><g fill="#fff"><rect x="7" y="9.6" width="1.7" height="7.6"/><circle cx="7.85" cy="7.3" r="1.05"/><path d="M10.6 9.6h3c2.8 0 4.1 2 4.1 3.8 0 2-1.5 3.8-4.1 3.8h-3zm1.7 6.1h1.2c1.8 0 2.5-1.3 2.5-2.3 0-1.4-.9-2.3-2.5-2.3h-1.2z"/></g></svg>';
@@ -793,7 +710,7 @@ document.addEventListener("keydown", e => {
 });
 
 function fitTitle(){ const h = $(".print h1"), box = $(".hero-inner"); if(!h||!box) return; h.style.fontSize = ""; const cs = getComputedStyle(box); const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); const w = h.scrollWidth; if (w > 0) { const cur = parseFloat(getComputedStyle(h).fontSize); h.style.fontSize = Math.min(214, cur*avail/w*0.995) + "px"; } const sl = $(".slice span"); if (sl) sl.style.fontSize = h.style.fontSize; if (window.__opMeasure) window.__opMeasure(); }
-function renderAll(){ renderStatic(); renderObjectives(); renderPlan(); renderTeam(); renderPubs(); renderNews(); renderGallery(); }
+function renderAll(){ renderStatic(); renderObjectives(); renderTeam(); renderPubs(); renderNews(); renderGallery(); }
 
 /* events */
 $$(".lang button").forEach(b => b.addEventListener("click", () => { lang = b.dataset.lang; try{localStorage.setItem("op-lang", lang);}catch(e){} renderAll(); }));
@@ -808,7 +725,6 @@ $$("#menu a, .brand, .skip").forEach(a => a.addEventListener("click", e => {
 }));
 const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight*0.72 - 76);
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
-let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(renderPlan, 150); });
 
 
 renderAll(); fitTitle();
