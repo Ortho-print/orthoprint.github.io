@@ -22,7 +22,7 @@
   --paper:#FFFFFF;
   --slate:#5A6079;
   --line:#DADDE8;
-  --amber:#E9A23B;        /* decision gates only */
+  --amber:#E9A23B;
   --display:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
   --text:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --wrap:1180px;
@@ -135,28 +135,6 @@ p{margin:0 0 1em}
 .aim p{margin:0;color:var(--ink-2)}
 @media (max-width:860px){.about-grid{grid-template-columns:1fr}}
 
-/* gates pipeline */
-.pipe{position:relative;display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr 1.1fr;gap:0;margin:0 0 72px;padding:0;list-style:none}
-.pipe::before{content:"";position:absolute;left:4%;right:4%;top:43px;height:2px;background:linear-gradient(90deg,var(--violet),var(--glow) 60%,var(--amber))}
-.pipe li{position:relative;padding:0 18px 0 0}
-.node{height:88px;display:flex;align-items:center}
-.dots{display:grid;grid-template-columns:repeat(6,14px);gap:7px;background:var(--resin);padding:8px 10px 8px 0;position:relative}
-.dots i{width:14px;height:14px;border-radius:50%;background:var(--violet);display:block}
-.gate{width:30px;height:30px;transform:rotate(45deg);background:var(--paper);border:3px solid var(--amber);border-radius:5px;position:relative}
-.goal{width:40px;height:40px;border-radius:50%;background:var(--ink);display:grid;place-items:center;position:relative}
-.goal::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--amber)}
-.pipe h3{font-size:19px;margin:6px 0 6px}
-.pipe .when{font-size:14px;color:var(--slate);margin:0 0 6px}
-.pipe p{font-size:15.5px;line-height:1.5;margin:0;color:var(--ink-2);max-width:26ch}
-@media (max-width:900px){
-  .pipe{grid-template-columns:1fr;gap:6px}
-  .pipe::before{left:20px;right:auto;top:30px;bottom:40px;width:2px;height:auto;background:linear-gradient(180deg,var(--violet),var(--glow) 60%,var(--amber))}
-  .pipe li{display:grid;grid-template-columns:auto 1fr;column-gap:22px;padding:0 0 22px}
-  .node{height:auto;width:42px;justify-content:center;align-items:flex-start;padding-top:8px;grid-row:span 3}
-  .dots{grid-template-columns:repeat(2,9px);gap:4px;padding:6px 0;background:var(--paper)}
-  .dots i{width:9px;height:9px}
-  .pipe h3{margin-top:4px}
-}
 .objectives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px;list-style:none;margin:0;padding:0}
 .objectives li{display:grid;grid-template-columns:52px 1fr;gap:4px;padding:22px 0;border-top:1px solid var(--line)}
 .objectives b{font-family:var(--display);font-weight:700;font-size:20px;color:var(--violet);font-variation-settings:"wdth" 80}
@@ -168,30 +146,8 @@ p{margin:0 0 1em}
 .now{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin:0 0 28px}
 .now strong{font-family:var(--display);font-size:clamp(28px,3vw,38px);font-variation-settings:"wdth" 80;font-weight:700}
 .now span{color:var(--slate)}
-.tl{--m:36;position:relative;display:grid;grid-template-columns:200px 1fr;gap:0 20px}
-.tl .years{grid-column:2;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line);padding-bottom:8px;font-size:14px;color:var(--slate)}
-.tl .years span{padding-left:8px;border-left:1px solid var(--line)}
-.tl .row{display:contents}
-.tl .lbl{padding:16px 0;font-size:15px;line-height:1.35}
-.tl .lbl b{display:block;font-family:var(--display);font-variation-settings:"wdth" 85;font-size:16px}
-.tl .track{position:relative;border-bottom:1px solid var(--line);background:repeating-linear-gradient(90deg,transparent 0 calc(100%/3 - 1px),var(--line) calc(100%/3 - 1px) calc(100%/3))}
-.tl .bar{position:absolute;top:50%;height:16px;margin-top:-8px;border-radius:4px;background:var(--ink)}
-.tl .bar.done{background:linear-gradient(90deg,var(--violet) var(--p,0%),var(--ink) var(--p,0%))}
-.tl .gates{grid-column:2;position:relative;height:58px}
-.tl .g{position:absolute;top:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--slate);white-space:nowrap}
-.tl .g i{width:14px;height:14px;transform:rotate(45deg);border:2.5px solid var(--amber);background:var(--paper);border-radius:3px}
-.tl .g:last-child{transform:translateX(-100%);align-items:flex-end}
-.tl .today{position:absolute;top:-6px;bottom:52px;width:0;border-left:2px solid var(--violet);pointer-events:none}
-.tl .today span{position:absolute;top:8px;left:6px;background:var(--violet);color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.tl-wrap{position:relative}
 @media (max-width:760px){
-  .tl{grid-template-columns:1fr}
-  .tl .years,.tl .gates{grid-column:1}
-  .tl .lbl{padding:14px 0 6px}
-  .tl .track{height:30px}
-  .tl .g{font-size:12px}
-  .tl .today span{top:-20px}
-}
+            }
 @media (max-width:960px){@media (max-width:560px){
 /* team */
 .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;list-style:none;margin:0;padding:0}
@@ -370,21 +326,9 @@ p{margin:0 0 1em}
 <section class="section" id="objectives">
   <div class="wrap">
     <div class="head">
-      <h2 data-i="obj.h">From eleven formulations to transferable design rules</h2>
-      <p class="lede" data-i="obj.lede">Each formulation must pass three decision gates. Those that fail a predefined threshold are not advanced unchanged, which keeps the results interpretable and the scope under control.</p>
+      <h2 data-i="obj.h">What the project sets out to do</h2>
+      <p class="lede" data-i="obj.lede">Four objectives link how a resin is formulated and printed to how it performs and how safe it is for patients.</p>
     </div>
-    <ol class="pipe">
-      <li><div class="node"><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-        <h3 data-i="g0.h">11 formulations</h3><p class="when" data-i="g0.w">Year 1</p><p data-i="g0.p">Urethane-acrylate and hybrid systems within a bounded design space.</p></li>
-      <li><div class="node"><div class="gate" aria-hidden="true"></div></div>
-        <h3 data-i="g1.h">Gate 1</h3><p class="when" data-i="g1.w">End of year 1</p><p data-i="g1.p">Printability and degree-of-conversion thresholds.</p></li>
-      <li><div class="node"><div class="gate" aria-hidden="true"></div></div>
-        <h3 data-i="g2.h">Gate 2</h3><p class="when" data-i="g2.w">Year 2</p><p data-i="g2.p">At least 80% retention of key mechanical properties after aging.</p></li>
-      <li><div class="node"><div class="gate" aria-hidden="true"></div></div>
-        <h3 data-i="g3.h">Gate 3</h3><p class="when" data-i="g3.w">Year 3</p><p data-i="g3.p">Chemical safety and at least 70% cell viability (ISO 10993-5).</p></li>
-      <li><div class="node"><div class="goal" aria-hidden="true"></div></div>
-        <h3 data-i="g4.h">Design rules</h3><p class="when" data-i="g4.w">Year 3</p><p data-i="g4.p">Processing envelopes validated on at least two printing platforms.</p></li>
-    </ol>
     <ul class="objectives" id="objList"></ul>
   </div>
 </section>
@@ -464,7 +408,7 @@ p{margin:0 0 1em}
   <button class="nx" type="button" data-i="lb.next">Next</button>
 </div>
 
-<script src="content.js?v=20261108d"></script>
+<script src="content.js?v=20261108e"></script>
 <script>
 document.documentElement.classList.remove("no-js");
 (function(){
@@ -487,13 +431,8 @@ en:{
  "about.hypo":"Controlled variations in crosslink density, network heterogeneity and segmental mobility govern the mechanical durability and biological response of photopolymers.",
  "about.aimH":"Aim",
  "about.aim":"To establish quantitative and mechanistically interpretable relationships between photopolymer network architecture, processing conditions, and long-term functional and biological performance in vat-photopolymerised orthodontic materials, enabling predictive and transferable material design.",
- "obj.h":"From eleven formulations to transferable design rules",
- "obj.lede":"Each formulation must pass three decision gates. Those that fail a predefined threshold are not advanced unchanged, which keeps the results interpretable and the scope under control.",
- "g0.h":"11 formulations","g0.w":"Year 1","g0.p":"Urethane-acrylate and hybrid systems within a bounded design space.",
- "g1.h":"Gate 1","g1.w":"Year 1","g1.p":"Printability and degree-of-conversion thresholds.",
- "g2.h":"Gate 2","g2.w":"Year 2","g2.p":"At least 80% retention of key mechanical properties after aging.",
- "g3.h":"Gate 3","g3.w":"Year 3","g3.p":"Chemical safety and at least 70% cell viability (ISO 10993-5).",
- "g4.h":"Design rules","g4.w":"Year 3","g4.p":"Processing envelopes validated on at least two printing platforms.",
+ "obj.h":"What the project sets out to do",
+ "obj.lede":"Four objectives link how a resin is formulated and printed to how it performs and how safe it is for patients.",
  "team.h":"Team",
  "team.lede":"Dental medicine, polymer engineering, analytical chemistry and cell biology, with every member responsible for a defined part of the methodological chain.",
  "inst.h":"Collaborating institutions","inst.lead":"Host institution",
@@ -514,7 +453,7 @@ en:{
  "lb.close":"Close","lb.prev":"Previous","lb.next":"Next",
  now:(m,t)=>`Month ${m} of ${t}`, nowSub:(d)=>`The project runs until ${d}.`,
  before:(d)=>`Starts on ${d}`, after:"The project has been completed", todayTag:"Today",
- year:(n)=>`Year ${n}`, gate:(n)=>`Gate ${n}`,
+ 
  orcid:"ORCID"
 },
 hr:{
@@ -530,13 +469,8 @@ hr:{
  "about.hypo":"Kontrolirane promjene gustoće umreženja, heterogenosti mreže i segmentalne pokretljivosti određuju mehaničku trajnost i biološki odgovor fotopolimera.",
  "about.aimH":"Cilj",
  "about.aim":"Uspostaviti kvantitativne i mehanistički tumačive odnose između arhitekture fotopolimerne mreže, uvjeta obrade te dugoročnih funkcionalnih i bioloških svojstava ortodontskih materijala izrađenih fotopolimerizacijom u kadi, kako bi se omogućio prediktivan i prenosiv dizajn materijala.",
- "obj.h":"Od jedanaest formulacija do prenosivih pravila dizajna",
- "obj.lede":"Svaka formulacija mora proći tri točke odluke. Formulacije koje ne zadovolje unaprijed definirani prag ne napreduju nepromijenjene, čime rezultati ostaju tumačivi, a opseg pod kontrolom.",
- "g0.h":"11 formulacija","g0.w":"1. godina","g0.p":"Uretan-akrilatni i hibridni sustavi unutar ograničenog prostora dizajna.",
- "g1.h":"Točka odluke 1","g1.w":"1. godina","g1.p":"Pragovi printabilnosti i stupnja konverzije.",
- "g2.h":"Točka odluke 2","g2.w":"2. godina","g2.p":"Najmanje 80 % zadržanih ključnih mehaničkih svojstava nakon starenja.",
- "g3.h":"Točka odluke 3","g3.w":"3. godina","g3.p":"Kemijska sigurnost i najmanje 70 % vijabilnosti stanica (ISO 10993-5).",
- "g4.h":"Pravila dizajna","g4.w":"3. godina","g4.p":"Rasponi parametara obrade potvrđeni na najmanje dvije platforme za printanje.",
+ "obj.h":"Što projekt želi postići",
+ "obj.lede":"Četiri cilja povezuju način na koji se smola formulira i printa s njezinim svojstvima i sigurnošću za pacijente.",
  "team.h":"Tim",
  "team.lede":"Dentalna medicina, polimerno inženjerstvo, analitička kemija i stanična biologija, a svaki je član odgovoran za određeni dio metodološkog lanca.",
  "inst.h":"Suradne ustanove","inst.lead":"Ustanova nositelj",
@@ -557,7 +491,7 @@ hr:{
  "lb.close":"Zatvori","lb.prev":"Prethodna","lb.next":"Sljedeća",
  now:(m,t)=>`${m}. mjesec od ${t}`, nowSub:(d)=>`Projekt traje do ${d}`,
  before:(d)=>`Počinje ${d}`, after:"Projekt je završen", todayTag:"Danas",
- year:(n)=>`${n}. godina`, gate:(n)=>`Točka odluke ${n}`,
+ 
  orcid:"ORCID"
 }};
 
