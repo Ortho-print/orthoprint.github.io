@@ -146,7 +146,7 @@ window.SITE = {
 
   contact: {
     address: { en: "Gundulićeva 5, 10000 Zagreb, Croatia", hr: "Gundulićeva 5, 10000 Zagreb" },
-    email: ""   // npr. "orthoprint@sfzg.unizg.hr" – ostavite prazno ako ne želite prikazati
+    email: "mestrovic@sfzg.hr"   // ostavite prazno ("") ako ne želite prikazati
   },
 
   /* ---------------------------------------------------------------

@@ -48,34 +48,30 @@ p{margin:0 0 1em}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .25s, box-shadow .25s}
-.nav .wrap{display:flex;align-items:center;gap:28px;height:76px}
-.brand{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.02em;color:#fff;text-decoration:none;font-variation-settings:"wdth" 80;display:flex;align-items:center;gap:12px}
-.brand .mark{height:62px;width:auto;flex:none;margin:-4px 0;filter:drop-shadow(0 4px 14px rgba(106,75,255,.35))}
-.nav.solid .brand .mark{filter:none}
-@media (max-width:900px){.brand .mark{height:52px}.nav .wrap{gap:14px}.nav .lang{margin-left:auto}.nav .menu-btn{margin-left:0}}
-@media (max-width:440px){.brand .word{display:none}}
-.nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:28px;height:68px}
+.nav ul{grid-column:2;display:flex;gap:26px;list-style:none;margin:0;padding:0}
 .nav ul a{color:rgba(255,255,255,.82);text-decoration:none;font-size:15px}
 .nav ul a:hover{color:#fff}
-.lang{display:flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:2px}
+.lang{grid-column:3;justify-self:end;display:flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:2px}
 .lang button{all:unset;cursor:pointer;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;color:rgba(255,255,255,.75)}
 .lang button[aria-pressed="true"]{background:#fff;color:var(--ink)}
 .lang button:focus-visible{outline:2px solid var(--glow)}
 .menu-btn{all:unset;display:none;cursor:pointer;color:#fff;font-size:15px;font-weight:600;padding:6px 2px}
 .nav.solid{background:rgba(242,244,248,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.nav.solid .brand,.nav.solid .menu-btn{color:var(--ink)}
+.nav.solid .menu-btn{color:var(--ink)}
 .nav.solid ul a{color:var(--slate)}
 .nav.solid ul a:hover{color:var(--ink)}
 .nav.solid .lang{border-color:var(--line)}
 .nav.solid .lang button{color:var(--slate)}
 .nav.solid .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
 @media (max-width:900px){
-  .menu-btn{display:block;margin-left:auto}
-  .nav ul{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--gut) 18px;box-shadow:0 12px 30px rgba(21,18,63,.12)}
+  .nav .wrap{display:flex;justify-content:space-between;gap:14px}
+  .menu-btn{display:block}
+  .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);padding:8px var(--gut) 18px;box-shadow:0 12px 30px rgba(21,18,63,.12)}
   .nav.open ul{display:flex}
   .nav ul a{color:var(--ink)!important;display:block;padding:12px 0;font-size:17px;border-bottom:1px solid var(--line)}
   .nav.open{background:var(--paper)}
-  .nav.open .brand,.nav.open .menu-btn{color:var(--ink)}
+  .nav.open .menu-btn{color:var(--ink)}
 }
 
 /* ---------- hero ---------- */
@@ -89,7 +85,7 @@ p{margin:0 0 1em}
 @property --ll{syntax:"<number>";inherits:true;initial-value:.45}
 .print{position:relative;display:block;margin:0 0 14px -0.04em;--lh:5px}
 .vat{position:relative;display:inline-block;overflow:hidden;vertical-align:top}
-.print h1{font-size:clamp(56px,14vw,214px);white-space:nowrap;font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;letter-spacing:-.025em;line-height:.9;padding-top:.03em;
+.print h1{font-size:clamp(56px,14vw,214px);white-space:nowrap;font-weight:700;font-variation-settings:"wdth" 100,"opsz" 96;letter-spacing:-.015em;line-height:.9;padding-top:.03em;
   color:transparent;-webkit-background-clip:text;background-clip:text;
   background-image:repeating-linear-gradient(to bottom,#fff 0,#fff calc(var(--lh) - 1px),rgba(255,255,255,calc(1 - var(--ll))) calc(var(--lh) - 1px),rgba(255,255,255,calc(1 - var(--ll))) var(--lh));
   will-change:transform,clip-path}
@@ -98,7 +94,7 @@ p{margin:0 0 1em}
 .print.cured h1{--ll:.08;transition:--ll 1.6s ease;animation:postcure 1.6s ease}
 @keyframes postcure{0%{filter:drop-shadow(0 0 0 rgba(150,120,255,0))}35%{filter:drop-shadow(0 0 26px rgba(150,120,255,.95)) brightness(1.15)}100%{filter:drop-shadow(0 0 0 rgba(150,120,255,0))}}
 .slice{position:absolute;left:0;right:0;top:100%;height:var(--lh);overflow:hidden;opacity:0;pointer-events:none}
-.slice span{position:absolute;left:0;top:0;font-family:var(--display);font-size:inherit;white-space:nowrap;font-weight:800;font-variation-settings:"wdth" 75,"opsz" 96;letter-spacing:-.025em;line-height:.9;padding-top:.03em;color:#D8CCFF;text-shadow:0 0 10px #8F72FF,0 0 22px #6A4BFF}
+.slice span{position:absolute;left:0;top:0;font-family:var(--display);font-size:inherit;white-space:nowrap;font-weight:700;font-variation-settings:"wdth" 100,"opsz" 96;letter-spacing:-.015em;line-height:.9;padding-top:.03em;color:#D8CCFF;text-shadow:0 0 10px #8F72FF,0 0 22px #6A4BFF}
 .hud{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;min-height:30px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums;transition:opacity .5s}
 .hud b{font-weight:600;color:#fff;min-width:9ch}
 .hud button{all:unset;pointer-events:auto;cursor:pointer;font-size:13px;font-weight:600;color:#fff;padding:5px 14px;border-radius:999px;border:1px solid rgba(191,174,255,.5);transition:background .2s}
@@ -255,10 +251,6 @@ p{margin:0 0 1em}
 
 <nav class="nav" id="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="ORTHOPRINT">
-      <img class="mark" src="img/logo.png" alt="" width="73" height="62">
-      <span class="word">ORTHOPRINT</span>
-    </a>
     <ul id="menu">
       <li><a href="#project" data-i="nav.project">Project</a></li>
       <li><a href="#objectives" data-i="nav.objectives">Objectives</a></li>
@@ -401,7 +393,7 @@ p{margin:0 0 1em}
   <button class="nx" type="button" data-i="lb.next">Next</button>
 </div>
 
-<script src="content.js?v=20261108f"></script>
+<script src="content.js?v=20261109a"></script>
 <script>
 document.documentElement.classList.remove("no-js");
 (function(){
@@ -644,13 +636,13 @@ $$(".lang button").forEach(b => b.addEventListener("click", () => { lang = b.dat
 $("#pubTabs").addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (!b) return; pubTab = b.dataset.tab; renderPubs(); $(`[data-tab="${pubTab}"]`).focus(); });
 const nav = $("#nav"), menuBtn = $("#menuBtn");
 menuBtn.addEventListener("click", () => { const o = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", String(o)); });
-$$("#menu a, .brand, .skip").forEach(a => a.addEventListener("click", e => {
+$$("#menu a, .skip").forEach(a => a.addEventListener("click", e => {
   const id = a.getAttribute("href").slice(1), el = document.getElementById(id);
   if (!el) return; e.preventDefault(); nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded","false");
   el.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   try { history.replaceState(null, "", "#"+id); } catch(_){}
 }));
-const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight*0.72 - 76);
+const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight*0.72 - 68);
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
 
 
